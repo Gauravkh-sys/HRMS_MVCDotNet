@@ -1,0 +1,39 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Bb]uild/
+[Bb]uild[Ll]og.*
+
+# Visual Studio / .NET
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.pdb
+*.cache
+*.dll
+*.exe
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+
+# NuGet / packages
+packages/
+*.nupkg
+*.snupkg
+
+# ASP.NET / web app generated files
+publish/
+App_Data/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
