@@ -10,3 +10,4 @@ C:\Users\Lenovo\source\repos\HRMS\HRMS.Domain\obj\Debug\net10.0\refint\HRMS.Doma
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Domain\obj\Debug\net10.0\HRMS.Domain.pdb
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Domain\obj\Debug\net10.0\ref\HRMS.Domain.dll
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Domain\obj\Debug\net10.0\HRMS.Dom.3EB3ABA7.Up2Date
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Domain\obj\Debug\net10.0\HRMS.Domain.sourcelink.json

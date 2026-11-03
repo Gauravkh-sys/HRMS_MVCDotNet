@@ -15,3 +15,4 @@ C:\Users\Lenovo\source\repos\HRMS\HRMS.Infrastructure\obj\Debug\net10.0\refint\H
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Infrastructure\obj\Debug\net10.0\HRMS.Infrastructure.pdb
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Infrastructure\obj\Debug\net10.0\HRMS.Infrastructure.genruntimeconfig.cache
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Infrastructure\obj\Debug\net10.0\ref\HRMS.Infrastructure.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Infrastructure\obj\Debug\net10.0\HRMS.Infrastructure.sourcelink.json

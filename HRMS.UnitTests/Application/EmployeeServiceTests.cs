@@ -5,6 +5,8 @@ using HRMS.Domain.Entities;
 using HRMS.Domain.Repositories;
 using HRMS.Domain.ValueObjects;
 using HRMS.Infrastructure.Data;
+using HRMS.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 
@@ -15,6 +17,7 @@ public class EmployeeServiceTests
 {
     private readonly IEmployeeRepository _employeeRepositoryMock;
     private readonly HRMSDbContext _dbContext;
+    private readonly UserManager<ApplicationUser> _userManagerMock;
     private readonly EmployeeService _employeeService;
 
     public EmployeeServiceTests()
@@ -28,8 +31,14 @@ public class EmployeeServiceTests
             .Options;
         _dbContext = new HRMSDbContext(options);
 
-        // 3. Initialize service with substitutes/context
-        _employeeService = new EmployeeService(_employeeRepositoryMock, _dbContext);
+        // 3. Create mock for UserManager dependency
+        var userStoreMock = Substitute.For<IUserStore<ApplicationUser>>();
+        _userManagerMock = Substitute.For<UserManager<ApplicationUser>>(
+            userStoreMock, null, null, null, null, null, null, null, null
+        );
+
+        // 4. Initialize service with substitutes/context
+        _employeeService = new EmployeeService(_employeeRepositoryMock, _dbContext, _userManagerMock);
     }
 
     [TestMethod]
@@ -40,7 +49,7 @@ public class EmployeeServiceTests
         var email = Email.Create("alex.turner@company.com").Value!;
         var department = new Department(1, "Engineering", "ENG");
 
-        var employee = new Employee("Alex", "Turner", email, "Senior Developer",1, DateTime.Today)
+        var employee = new Employee("Alex", "Turner", email, "Senior Developer", 1, DateTime.Today)
         {
             Department = department
         };

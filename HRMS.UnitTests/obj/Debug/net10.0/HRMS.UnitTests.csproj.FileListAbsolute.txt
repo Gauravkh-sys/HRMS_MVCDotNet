@@ -319,3 +319,4 @@ C:\Users\Lenovo\source\repos\HRMS\HRMS.UnitTests\obj\Debug\net10.0\refint\HRMS.U
 C:\Users\Lenovo\source\repos\HRMS\HRMS.UnitTests\obj\Debug\net10.0\HRMS.UnitTests.pdb
 C:\Users\Lenovo\source\repos\HRMS\HRMS.UnitTests\obj\Debug\net10.0\HRMS.UnitTests.genruntimeconfig.cache
 C:\Users\Lenovo\source\repos\HRMS\HRMS.UnitTests\obj\Debug\net10.0\ref\HRMS.UnitTests.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.UnitTests\obj\Debug\net10.0\HRMS.UnitTests.sourcelink.json

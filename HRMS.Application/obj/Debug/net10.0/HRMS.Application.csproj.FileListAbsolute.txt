@@ -15,3 +15,4 @@ C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Applic
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\refint\HRMS.Application.dll
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.pdb
 C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\ref\HRMS.Application.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.sourcelink.json

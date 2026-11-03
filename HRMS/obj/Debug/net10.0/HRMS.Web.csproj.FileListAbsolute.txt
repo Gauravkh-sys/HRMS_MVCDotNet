@@ -300,3 +300,4 @@ C:\Users\Lenovo\source\repos\HRMS\HRMS\obj\Debug\net10.0\HRMS.Web.pdb
 C:\Users\Lenovo\source\repos\HRMS\HRMS\obj\Debug\net10.0\HRMS.Web.genruntimeconfig.cache
 C:\Users\Lenovo\source\repos\HRMS\HRMS\obj\Debug\net10.0\ref\HRMS.Web.dll
 C:\Users\Lenovo\source\repos\HRMS\HRMS\obj\Debug\net10.0\compressed\gdzf737xf7-{0}-sxap7irv92-sxap7irv92.gz
+C:\Users\Lenovo\source\repos\HRMS\HRMS\obj\Debug\net10.0\HRMS.Web.sourcelink.json
