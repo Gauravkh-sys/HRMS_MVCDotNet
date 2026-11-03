@@ -1,4 +1,7 @@
-name: .NET Core CI
+# This workflow builds, tests, measures code coverage, and packages your 
+# ASP.NET Core HRMS solution on both Debug and Release configurations.
+
+name: .NET Core CI/CD & Code Coverage
 
 on:
   push:
@@ -7,7 +10,11 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
-  build:
+  build-and-test:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
     runs-on: windows-latest
 
     steps:
@@ -24,8 +31,21 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore HRMS.slnx
 
-    - name: Build Solution
-      run: dotnet build HRMS.slnx --configuration Release --no-restore
+    - name: Build Solution (${{ matrix.configuration }})
+      run: dotnet build HRMS.slnx --configuration ${{ matrix.configuration }} --no-restore
 
-    - name: Run Unit Tests
-      run: dotnet test HRMS.slnx --configuration Release --no-build --verbosity normal
+    - name: Run Unit Tests with Code Coverage
+      run: |
+        dotnet test HRMS.slnx --configuration ${{ matrix.configuration }} --no-build --verbosity normal `
+          --collect:"XPlat Code Coverage" `
+          -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+
+    - name: Publish Web App (${{ matrix.configuration }})
+      if: matrix.configuration == 'Release'
+      run: dotnet publish HRMS/HRMS.Web.csproj --configuration Release --output ./publish-output
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: HRMS-Publish-${{ matrix.configuration }}
+        path: ./publish-output
