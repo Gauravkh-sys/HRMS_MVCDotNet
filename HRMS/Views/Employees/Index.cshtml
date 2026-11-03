@@ -1,0 +1,87 @@
+﻿@model IEnumerable<HRMS.Application.DTOs.Employee.EmployeeDto>
+@using Microsoft.AspNetCore.Identity
+@using HRMS.Infrastructure.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Employee Directory";
+
+    var currentUser = await UserManager.GetUserAsync(User);
+    bool canExport = currentUser != null && (await UserManager.IsInRoleAsync(currentUser, "Admin") || await UserManager.IsInRoleAsync(currentUser, "HRManager"));
+    bool canAddEmployee = currentUser != null && (await UserManager.IsInRoleAsync(currentUser, "Admin") || await UserManager.IsInRoleAsync(currentUser, "HRManager"));
+}
+
+<div class="container-fluid py-4 px-3 px-md-4">
+    <!-- Responsive Header Section -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <h2 class="fw-bold mb-1 text-dark">Employee Directory</h2>
+            <p class="text-muted small mb-0">Manage organization personnel records and department assignments.</p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            @if (canExport)
+            {
+                <a asp-action="ExportExcel" class="btn btn-success rounded-pill px-3 shadow-sm d-inline-flex align-items-center">
+                    <i class="fa-solid fa-file-excel me-1"></i> Export to Excel
+                </a>
+            }
+            @if (canAddEmployee)
+            {
+                <a asp-action="Create" class="btn btn-primary rounded-pill px-3 shadow-sm d-inline-flex align-items-center" style="background-color: #0B735F; border: none;">
+                    <i class="fa-solid fa-user-plus me-1"></i> Add New Employee
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Data Table Card Wrapper -->
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 text-nowrap">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="py-3 ps-4">Name</th>
+                        <th>Email</th>
+                        <th>Designation</th>
+                        <th>Department</th>
+                        <th>Joining Date</th>
+                        <th class="pe-4">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="py-3 ps-4 fw-semibold text-dark">@item.FirstName @item.LastName</td>
+                                <td class="text-muted">@item.Email</td>
+                                <td>@item.Designation</td>
+                                <td><span class="badge bg-light text-dark border">@item.DepartmentName</span></td>
+                                <td>@item.JoiningDate.ToString("yyyy-MM-dd")</td>
+                                <td class="pe-4">
+                                    @if (item.IsActive)
+                                    {
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1">Inactive</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">No employee records found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

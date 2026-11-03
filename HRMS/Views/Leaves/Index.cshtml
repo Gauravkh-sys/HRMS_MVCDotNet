@@ -1,0 +1,124 @@
+﻿@model IEnumerable<HRMS.Domain.Entities.LeaveRequest>
+@using HRMS.Domain.Entities
+@using Microsoft.AspNetCore.Identity
+@using HRMS.Infrastructure.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Leave Management";
+    var currentUser = await UserManager.GetUserAsync(User);
+    bool isHrOrAdmin = currentUser != null && (await UserManager.IsInRoleAsync(currentUser, "Admin") || await UserManager.IsInRoleAsync(currentUser, "HRManager"));
+}
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2 class="fw-bold mb-0">Leave Management</h2>
+            <p class="text-muted small">Review leave requests and manage time-off workflows.</p>
+        </div>
+        <a asp-action="Apply" class="btn btn-primary rounded-pill px-4 shadow-sm" style="background-color: #0B735F; border: none;">
+            <i class="fa-solid fa-plus me-1"></i> Apply for Leave
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4">Employee</th>
+                        <th>Leave Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            bool isMyRequest = currentUser != null && item.Employee?.Email?.Value == currentUser.Email;
+
+                            <tr>
+                                <td class="ps-4 fw-semibold text-dark">@(item.Employee != null ? $"{item.Employee.FirstName} {item.Employee.LastName}" : "Unknown")</td>
+                                <td>@item.LeaveType</td>
+                                <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                                <td>@item.EndDate.ToString("yyyy-MM-dd")</td>
+                                <td class="text-muted small">@item.Reason</td>
+                                <td>
+                                    @if (item.Status == LeaveStatus.Approved)
+                                    {
+                                        <span class="badge bg-success bg-opacity-15 text-success border border-success border-opacity-25 px-2 py-1">Approved</span>
+                                    }
+                                    else if (item.Status == LeaveStatus.Rejected)
+                                    {
+                                        <span class="badge bg-danger bg-opacity-15 text-danger border border-danger border-opacity-25 px-2 py-1">Rejected</span>
+                                    }
+                                    else if (item.Status == LeaveStatus.Revoked)
+                                    {
+                                        <span class="badge bg-secondary bg-opacity-15 text-secondary border border-secondary border-opacity-25 px-2 py-1">Revoked</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning bg-opacity-15 text-dark border border-warning border-opacity-25 px-2 py-1">Pending</span>
+                                    }
+                                </td>
+                                <td class="text-end pe-4">
+                                    @if (isMyRequest)
+                                    {
+                                        @if (item.Status == LeaveStatus.Pending || item.Status == LeaveStatus.Approved)
+                                        {
+                                            <form asp-action="Revoke" asp-route-id="@item.Id" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="return confirm('Cancel this leave request?');">
+                                                    <i class="fa-solid fa-ban me-1"></i> Cancel Request
+                                                </button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted small fst-italic">No actions</span>
+                                        }
+                                    }
+                                    else if (isHrOrAdmin)
+                                    {
+                                        @if (item.Status == LeaveStatus.Pending)
+                                        {
+                                            <div class="d-inline-flex gap-1">
+                                                <form asp-action="Approve" asp-route-id="@item.Id" method="post" class="d-inline">
+                                                    <button type="submit" class="btn btn-sm btn-success rounded-pill px-3">Approve</button>
+                                                </form>
+                                                <form asp-action="Reject" asp-route-id="@item.Id" method="post" class="d-inline">
+                                                    <button type="submit" class="btn btn-sm btn-danger rounded-pill px-3">Reject</button>
+                                                </form>
+                                            </div>
+                                        }
+                                        else if (item.Status == LeaveStatus.Approved)
+                                        {
+                                            <form asp-action="Revoke" asp-route-id="@item.Id" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-sm btn-warning rounded-pill px-3 text-dark">Revoke</button>
+                                            </form>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted small fst-italic">View Only</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-muted">No leave requests found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

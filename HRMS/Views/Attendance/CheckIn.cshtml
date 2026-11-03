@@ -1,0 +1,34 @@
+﻿@model HRMS.Application.DTOs.Employee.CheckInDto
+
+@{
+    ViewData["Title"] = "Check-In";
+}
+
+<div class="container mt-4">
+    <h2>Record Employee Check-In</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="CheckIn">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="EmployeeId" class="form-label">Employee</label>
+                    <select asp-for="EmployeeId" class="form-select" asp-items="ViewBag.Employees"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label">Attendance Status</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="Present">Present</option>
+                        <option value="Late">Late</option>
+                        <option value="HalfDay">Half-Day</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Check-In</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

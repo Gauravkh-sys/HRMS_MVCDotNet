@@ -1,0 +1,55 @@
+﻿@model HRMS.Application.DTOs.Employee.CreateEmployeeDto
+
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<div class="container mt-4">
+    <h2>Onboard New Employee</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Designation" class="form-label"></label>
+                    <input asp-for="Designation" class="form-control" />
+                    <span asp-validation-for="Designation" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DepartmentId" class="form-label">Department</label>
+                    <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.Departments"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="JoiningDate" class="form-label"></label>
+                    <input asp-for="JoiningDate" type="date" class="form-control" />
+                    <span asp-validation-for="JoiningDate" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">Save Employee</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

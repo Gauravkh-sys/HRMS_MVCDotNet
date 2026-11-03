@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HRMS.Application.DTOs.Payroll.PaySlipDto>
+
+@{
+    ViewData["Title"] = "Payroll Management";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Payroll & Payslips</h2>
+        <a asp-action="Generate" class="btn btn-primary">Generate Payslip</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee</th>
+                <th>Month / Year</th>
+                <th>Basic Salary</th>
+                <th>Net Pay</th>
+                <th>Generated Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.MonthYear</td>
+                    <td>₹@item.BasicSalary.ToString("N2")</td>
+                    <td><span class="fw-bold text-success">₹@item.NetPay.ToString("N2")</span></td>
+                    <td>@item.GeneratedDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info text-white">View Payslip</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

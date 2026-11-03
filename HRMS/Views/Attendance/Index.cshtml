@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HRMS.Application.DTOs.Employee.AttendanceRecordDto>
+
+@{
+    ViewData["Title"] = "Attendance Logs";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Attendance Tracking</h2>
+        <a asp-action="CheckIn" class="btn btn-primary">Log Check-In</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Total Hours</th>
+                <th>Productive Hours</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@(item.CheckInTime.HasValue ? item.CheckInTime.Value.ToString(@"hh\:mm\:ss") : "-")</td>
+                    <td>@(item.CheckOutTime.HasValue ? item.CheckOutTime.Value.ToString(@"hh\:mm\:ss") : "-")</td>
+                    <td><span class="fw-bold text-primary">@item.TotalHours</span></td>
+                    <td><span class="fw-bold text-success">@item.ProductiveHours</span></td>
+                    <td>
+                        <span class="badge bg-info text-dark">@item.Status</span>
+                    </td>
+                    <td>
+                        @if (!item.CheckOutTime.HasValue)
+                        {
+                            <form asp-action="CheckOut" method="post" class="d-inline">
+                                <input type="hidden" name="employeeId" value="@item.EmployeeId" />
+                                <button type="submit" class="btn btn-sm btn-warning">Check-Out</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Completed</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

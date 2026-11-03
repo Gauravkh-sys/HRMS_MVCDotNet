@@ -1,0 +1,120 @@
+﻿@model HRMS.Domain.Entities.PaySlip
+
+@{
+    ViewData["Title"] = "Salary Slip - " + System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Month) + " " + Model.Year;
+}
+
+<div class="container my-4" style="max-width: 900px;">
+    <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 800px; margin: 0 auto;">
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+            <i class="fa-solid fa-arrow-left me-1"></i> Back to List
+        </a>
+        <div class="d-flex gap-2">
+            <a asp-action="DownloadExcel" asp-route-id="@Model.Id" class="btn btn-success btn-sm px-3 shadow-sm">
+                <i class="fa-solid fa-file-excel me-1"></i> Excel
+            </a>
+            <a asp-action="Print" asp-route-id="@Model.Id" target="_blank" class="btn btn-danger btn-sm px-3 shadow-sm">
+                <i class="fa-solid fa-file-pdf me-1"></i> PDF Document
+            </a>
+        </div>
+    </div>
+
+    <!-- Payslip Document Card -->
+    <div class="card border shadow-sm p-4 bg-white">
+
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-start border-bottom pb-3 mb-4">
+            <div>
+                <h4 class="fw-bold text-dark mb-0">ENTERPRISE HRMS</h4>
+                <span class="text-muted small">Gorakhpur, India</span>
+            </div>
+            <div class="text-end">
+                <span class="text-muted small d-block">Payslip For The Month</span>
+                <h5 class="fw-bold text-dark mb-0">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Month) @Model.Year</h5>
+            </div>
+        </div>
+
+        <!-- Employee Summary & Net Pay Highlight Box -->
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-7">
+                <h6 class="fw-bold text-uppercase text-secondary small mb-3">Employee Summary</h6>
+                <table class="table table-sm table-borderless mb-0">
+                    <tbody>
+                        <tr>
+                            <td class="text-muted" style="width: 140px;">Employee Name</td>
+                            <td class="fw-semibold">: @(Model.Employee != null ? $"{Model.Employee.FirstName} {Model.Employee.LastName}" : "N/A")</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Designation</td>
+                            <td class="fw-semibold">: @(Model.Employee?.Designation ?? "N/A")</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Pay Period</td>
+                            <td class="fw-semibold">: @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Month) @Model.Year</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Generated Date</td>
+                            <td class="fw-semibold">: @Model.GeneratedDate.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Net Pay Highlight Card (Right Box) -->
+            <div class="col-md-5">
+                <div class="p-3 bg-light border rounded-3 text-center shadow-sm">
+                    <span class="fs-4 fw-bold text-success d-block">₹@Model.NetSalary.ToString("N2")</span>
+                    <span class="text-muted small fw-semibold text-uppercase">Employee Net Pay</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings & Deductions Side-by-Side Table -->
+        <div class="table-responsive mb-4">
+            <table class="table table-bordered align-middle mb-0">
+                <thead class="table-dark text-uppercase small">
+                    <tr>
+                        <th>Earnings</th>
+                        <th class="text-end" style="width: 150px;">Amount</th>
+                        <th>Deductions</th>
+                        <th class="text-end" style="width: 150px;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic Salary</td>
+                        <td class="text-end">₹@Model.BasicSalary.ToString("N2")</td>
+                        <td>Professional Deductions / PF</td>
+                        <td class="text-end">₹@Model.Deductions.ToString("N2")</td>
+                    </tr>
+                    <tr>
+                        <td>Allowances / HRA</td>
+                        <td class="text-end">₹@Model.Allowances.ToString("N2")</td>
+                        <td colspan="2" class="text-muted text-center small bg-light">-- None --</td>
+                    </tr>
+                    <!-- Gross Totals Footer -->
+                    <tr class="fw-bold table-light">
+                        <td>Gross Earnings</td>
+                        <td class="text-end">₹@((Model.BasicSalary + Model.Allowances).ToString("N2"))</td>
+                        <td>Total Deductions</td>
+                        <td class="text-end">₹@Model.Deductions.ToString("N2")</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total Net Payable Bottom Banner -->
+        <div class="p-3 bg-light border rounded-3 d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <span class="fw-bold text-uppercase text-dark d-block">Total Net Payable</span>
+                <span class="text-muted small">Gross Earnings - Total Deductions</span>
+            </div>
+            <h4 class="fw-bold text-success mb-0">₹@Model.NetSalary.ToString("N2")</h4>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="text-center text-muted small border-top pt-3">
+            <p class="mb-0">This is a system-generated salary slip and does not require a physical signature.</p>
+        </div>
+    </div>
+</div>

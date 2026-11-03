@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Select Working Persona";
+    var roles = ViewBag.Roles as IList<string> ?? new List<string>();
+    string returnUrl = ViewBag.ReturnUrl;
+}
+
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+                <div class="mb-3">
+                    <div class="bg-light text-primary rounded-circle d-inline-flex align-items-center justify-content-center fs-2 mb-2" style="width: 70px; height: 70px;">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h3 class="fw-bold">Select Your Working Persona</h3>
+                    <p class="text-muted small">You have multiple roles assigned. Please choose how you want to access this module.</p>
+                </div>
+
+                <form asp-action="SetActiveRole" method="post">
+                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+
+                    <div class="d-grid gap-3 mb-4">
+                        @foreach (var role in roles)
+                        {
+                            string badgeColor = role switch
+                            {
+                                "Admin" => "bg-dark text-white",
+                                "HRManager" => "bg-success text-white",
+                                _ => "bg-primary text-white"
+                            };
+                            string roleDescription = role switch
+                            {
+                                "Admin" => "Full system governance, macro analytics, and security audits.",
+                                "HRManager" => "Department leave reviews, attendance tracking, and approvals.",
+                                _ => "Self-service portal for personal leaves, payslips, and attendance."
+                            };
+
+                            <button type="submit" name="selectedRole" value="@role" class="btn btn-outline-dark text-start p-3 rounded-4 shadow-sm border position-relative hover-lift">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span class="fw-bold fs-5">@role Portal</span>
+                                    <span class="badge @badgeColor rounded-pill px-3">Active Role</span>
+                                </div>
+                                <p class="text-muted small mb-0">@roleDescription</p>
+                            </button>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

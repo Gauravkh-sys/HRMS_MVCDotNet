@@ -1,0 +1,17 @@
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Application.deps.json
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Application.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Application.pdb
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Domain.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Infrastructure.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Domain.pdb
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\bin\Debug\net10.0\HRMS.Infrastructure.pdb
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.csproj.AssemblyReference.cache
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.App.83A5D7FA.Up2Date
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\refint\HRMS.Application.dll
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\HRMS.Application.pdb
+C:\Users\Lenovo\source\repos\HRMS\HRMS.Application\obj\Debug\net10.0\ref\HRMS.Application.dll

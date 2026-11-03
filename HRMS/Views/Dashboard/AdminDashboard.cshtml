@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Admin Executive Dashboard";
+}
+
+<div class="container-fluid py-4">
+    <div class="p-4 mb-4 rounded-4 shadow-sm text-white bg-dark" style="background-color: #384166 !important;">
+        <h2 class="fw-bold mb-1">Executive Governance & Analytics</h2>
+        <p class="text-white-50 mb-0">High-level workforce headcount, financial compliance, and attrition metrics.</p>
+    </div>
+
+    <!-- Macro Metrics Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <span class="text-muted small uppercase fw-bold">Total Headcount</span>
+                <h2 class="fw-bold text-dark mt-1">248 Active</h2>
+                <small class="text-success fw-semibold"><i class="fa-solid fa-arrow-trend-up"></i> +12 joined this month</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <span class="text-muted small uppercase fw-bold">Monthly Payroll Outflow</span>
+                <h2 class="fw-bold text-dark mt-1">₹ 1.85 Cr</h2>
+                <small class="text-muted">Compliant with statutory tax deductions</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <span class="text-muted small uppercase fw-bold">Annual Attrition Rate</span>
+                <h2 class="fw-bold text-danger mt-1">4.2%</h2>
+                <small class="text-success fw-semibold"><i class="fa-solid fa-arrow-trend-down"></i> 1.5% lower than industry avg</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Department Breakdown & Insights -->
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <h5 class="fw-bold mb-3"><i class="fa-solid fa-chart-pie me-2 text-secondary"></i>Department Breakdown</h5>
+                <div class="d-flex flex-column gap-3">
+                    <div>
+                        <div class="d-flex justify-content-between mb-1 small fw-semibold">
+                            <span>Engineering & Development (.NET / Angular)</span>
+                            <span>110 Employees</span>
+                        </div>
+                        <div class="progress" style="height: 10px; border-radius: 5px;">
+                            <div class="progress-bar" style="width: 45%; background-color: #0B735F;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-between mb-1 small fw-semibold">
+                            <span>Quality Assurance & Testing</span>
+                            <span>52 Employees</span>
+                        </div>
+                        <div class="progress" style="height: 10px; border-radius: 5px;">
+                            <div class="progress-bar" style="width: 25%; background-color: #384166;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-between mb-1 small fw-semibold">
+                            <span>Product & Project Management</span>
+                            <span>45 Employees</span>
+                        </div>
+                        <div class="progress" style="height: 10px; border-radius: 5px;">
+                            <div class="progress-bar" style="width: 18%; background-color: #639D75;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-between mb-1 small fw-semibold">
+                            <span>HR, Finance & Operations</span>
+                            <span>41 Employees</span>
+                        </div>
+                        <div class="progress" style="height: 10px; border-radius: 5px;">
+                            <div class="progress-bar bg-secondary" style="width: 12%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-light">
+                <h5 class="fw-bold mb-3"><i class="fa-solid fa-shield-halved me-2 text-success"></i>Compliance Status</h5>
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                    <li class="d-flex align-items-center justify-content-between">
+                        <span class="small">PF & ESI Filing</span>
+                        <span class="badge bg-success rounded-pill">Completed</span>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-between">
+                        <span class="small">TDS Quarterly Return</span>
+                        <span class="badge bg-success rounded-pill">Submitted</span>
+                    </li>
+                    <li class="d-flex align-items-center justify-content-between">
+                        <span class="small">ISO Security Audit</span>
+                        <span class="badge bg-warning text-dark rounded-pill">Due Dec 2026</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model HRMS.Application.DTOs.Payroll.GeneratePaySlipDto
+
+@{
+    ViewData["Title"] = "Generate Payslip";
+}
+
+<div class="container mt-4">
+    <h2>Generate Employee Payslip</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Generate">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="EmployeeId" class="form-label">Employee</label>
+                    <select asp-for="EmployeeId" class="form-select" asp-items="ViewBag.Employees"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MonthYear" class="form-label">Month & Year (e.g., November 2026)</label>
+                    <input asp-for="MonthYear" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="BasicSalary" class="form-label"></label>
+                    <input asp-for="BasicSalary" type="number" step="0.01" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Hra" class="form-label">House Rent Allowance (HRA)</label>
+                    <input asp-for="Hra" type="number" step="0.01" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Allowances" class="form-label"></label>
+                    <input asp-for="Allowances" type="number" step="0.01" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Deductions" class="form-label"></label>
+                    <input asp-for="Deductions" type="number" step="0.01" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-success">Generate Payslip</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "HR Operations Dashboard";
+}
+
+<div class="container-fluid py-4">
+    <div class="p-4 mb-4 rounded-4 shadow-sm text-white" style="background-color: #0B735F;">
+        <h2 class="fw-bold mb-1">HR Operations & Workflow Hub</h2>
+        <p class="text-white-50 mb-0">Manage pending approvals, shift exceptions, and employee onboarding queues.</p>
+    </div>
+
+    <!-- Quick Metrics Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 border-start border-4 border-warning">
+                <span class="text-muted small">Pending Leave Requests</span>
+                <h3 class="fw-bold mb-0">12</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 border-start border-4 border-info">
+                <span class="text-muted small">Attendance Exceptions</span>
+                <h3 class="fw-bold mb-0">5</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 border-start border-4 border-success">
+                <span class="text-muted small">Active Employees</span>
+                <h3 class="fw-bold mb-0">248</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 border-start border-4 border-danger">
+                <span class="text-muted small">Open Tickets / Queries</span>
+                <h3 class="fw-bold mb-0">3</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approval Queue Table -->
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+        <h5 class="fw-bold mb-3"><i class="fa-solid fa-list-check me-2 text-success"></i>Pending Leave & Regularization Approvals</h5>
+        <div class="table-responsive">
+            <table class="table align-middle table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Employee</th>
+                        <th>Type</th>
+                        <th>Duration</th>
+                        <th>Reason</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="fw-semibold">Rahul Verma</div>
+                            <small class="text-muted">EMP-1042 • Software Engineer</small>
+                        </td>
+                        <td>Casual Leave</td>
+                        <td>Nov 10 - Nov 12 (3 Days)</td>
+                        <td>Family function out of station</td>
+                        <td class="text-end">
+                            <button class="btn btn-success btn-sm rounded-pill px-3">Approve</button>
+                            <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="fw-semibold">Ananya Gupta</div>
+                            <small class="text-muted">EMP-1089 • QA Analyst</small>
+                        </td>
+                        <td>Work From Home</td>
+                        <td>Nov 08 (1 Day)</td>
+                        <td>Medical appointment</td>
+                        <td class="text-end">
+                            <button class="btn btn-success btn-sm rounded-pill px-3">Approve</button>
+                            <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Reject</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

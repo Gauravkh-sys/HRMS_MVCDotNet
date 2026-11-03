@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="HRMS.Application/HRMS.Application.csproj" />
+  <Project Path="HRMS.Domain/HRMS.Domain.csproj" />
+  <Project Path="HRMS.Infrastructure/HRMS.Infrastructure.csproj" />
+  <Project Path="HRMS.UnitTests/HRMS.UnitTests.csproj" Id="3ddaa4d2-65c0-4aa7-bf05-a3b8266f4d34" />
+  <Project Path="HRMS/HRMS.Web.csproj" />
+</Solution>
